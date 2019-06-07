@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
+    "dev": "webpack --config webpackDev.config.js && nodemon build/backend.js",
+    "lint": "eslint src/ --fix",
     "test": "echo \"No test specified\" && exit 0"
   },
   "keywords": [],
@@ -14,9 +16,26 @@
     "@babel/core": "^7.2.2",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
-    "nodemon": "^1.18.9"
+    "babel-preset-es2015": "^7.0.0-beta.3",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.0",
+    "nodemon": "^1.18.9",
+    "webpack-cli": "^3.3.2"
   },
   "dependencies": {
-    "dotenv": "^6.2.0"
+    "apollo-server": "^2.6.1",
+    "apollo-server-express": "^2.6.1",
+    "babel-loader": "^8.0.6",
+    "dotenv": "^6.2.0",
+    "express": "^4.17.1",
+    "graphql": "^14.3.1",
+    "mongodb": "^3.2.7",
+    "mongoose": "^5.5.12",
+    "webpack": "^4.33.0",
+    "webpack-node-externals": "^1.7.2"
   }
 }
