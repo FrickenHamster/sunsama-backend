@@ -5,12 +5,13 @@ const schema = gql`
 
   type Query {
     task(_id: ID!): Task
-    tasks: [Task!]
+    tasks(startDate: Date, endDate: Date): [Task!]
   }
   
   type Mutation {
   	createTask(title: String!): Task!
-  	updateTask(_id: ID!, completed: Boolean): Task!
+  	changeTaskDate(_id: ID!, taskDate: Date): Task!
+  	completeTask(_id: ID!, completed: Boolean): Task!
   	deleteTask(_id: ID!): Result!
   }
 

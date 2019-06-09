@@ -1,11 +1,13 @@
 {
-  "name": "node-babel-server",
+  "name": "sunsama-backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
-    "dev": "webpack --config webpackDev.config.js && nodemon build/backend.js",
+    "webpack-dev": "webpack --watch --config webpackDev.config.js",
+    "nodemon-dev": "nodemon build/backend.js",
+    "dev": "npm-run-all -p webpack-dev nodemon-dev",
     "lint": "eslint src/ --fix",
     "test": "echo \"No test specified\" && exit 0"
   },
@@ -24,6 +26,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.0",
     "nodemon": "^1.18.9",
+    "npm-run-all": "^4.1.5",
     "webpack-cli": "^3.3.2"
   },
   "dependencies": {
@@ -32,7 +35,9 @@
     "babel-loader": "^8.0.6",
     "dotenv": "^6.2.0",
     "express": "^4.17.1",
+    "express-sse": "^0.5.1",
     "graphql": "^14.3.1",
+    "moment": "^2.24.0",
     "mongodb": "^3.2.7",
     "mongoose": "^5.5.12",
     "webpack": "^4.33.0",
