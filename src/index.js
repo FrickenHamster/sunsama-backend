@@ -1,27 +1,27 @@
 import express from 'express';
-import SSE from 'express-sse';
 import { ApolloServer } from 'apollo-server-express';
 
 import taskSchema from './schema/task';
 
-const url = 'mongodb://localhost:27017/sunsama';
+const mode = process.env.NODE_ENV || 'dev';
+console.log('mode', mode);
+
+let mongoURL;
+if (mode === 'production')
+	mongoURL = process.env.DATABASE_URL;
+else 
+	mongoURL = 'mongodb://localhost:27017/sunsama';
 
 const mongoose = require('mongoose');
 
-mongoose.connect(url, { useNewUrlParser: true });
+mongoose.connect(mongoURL, { useNewUrlParser: true });
 
 const app = express();
 
-const sse = new SSE();
-
-app.get('/events', sse.init);
-
-setInterval(() => {
-	sse.send({event: 'top shit'}, 'poop', 1);
-	console.log('wtf sending');
-}, 300000);
+initSSE(app);
 
 import taskResolver from './schema/resolver';
+import { initSSE } from "./sse";
 
 const server = new ApolloServer({
 	typeDefs: taskSchema,
@@ -30,6 +30,6 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-app.listen({ port: 8000 }, () => {
-	console.log('Apollo Server on http://localhost:8000/graphql');
+app.listen({ port: 3000 }, () => {
+	console.log('Apollo Server on http://localhost:3000/graphql');
 });

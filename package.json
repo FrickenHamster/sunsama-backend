@@ -9,7 +9,9 @@
     "nodemon-dev": "nodemon build/backend.js",
     "dev": "npm-run-all -p webpack-dev nodemon-dev",
     "lint": "eslint src/ --fix",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "build": "webpack --config webpackProd.config.js",
+    "dist": "webpack --config webpackProd.config.js && node build/backend.js"
   },
   "keywords": [],
   "author": "",

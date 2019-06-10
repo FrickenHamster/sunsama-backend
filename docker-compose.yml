@@ -3,13 +3,13 @@ services:
   app:
     build: .
     ports:
-      - "3000:8000"
+      - "3000:3000"
     volumes:
       - .:/opt/app
       - reserved:/opt/app/node_modules/
     entrypoint:
       - npm
       - run
-      - develop
+      - dist
 volumes:
   reserved:

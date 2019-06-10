@@ -13,8 +13,7 @@ module.exports = {
 	externals: nodeExternals(),
 	plugins: [
 	],
-	mode: 'development',
-	devtool: 'sourcemap',
+	mode: 'production',
 	module: {
 		rules: [
 			{
